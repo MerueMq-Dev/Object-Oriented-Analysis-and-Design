@@ -79,10 +79,20 @@ public abstract class ParentList<T>
     public abstract int GetGetStatus();            // успешно; список пуст
 }
 
-public abstract class LinkedList<T> : ParentList<T>;
+public abstract class LinkedList<T> : ParentList<T>
+{
+    // Конструктор
+    // постусловие: создан новый пустой список
+    public LinkedList() { }
+    
+}
 
 public abstract class TwoWayList<T> : ParentList<T>
 {
+    // Конструктор
+    // постусловие: создан новый пустой список
+    public TwoWayList() { }
+    
     // команда
     // предусловие: левее курсора есть элемент;
     // постусловие: курсор сдвинут на один узел влево
