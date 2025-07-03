@@ -1,6 +1,6 @@
 ﻿namespace Structures;
 
-public abstract class LinkedList<T>
+public abstract class OriginalLinkedList<T>
 {
     public const int CursorNil = 0; // курсор ещё не инициализирован 
     public const int CursorOk = 1; // последняя операция с курсором отработала нормально
@@ -13,7 +13,7 @@ public abstract class LinkedList<T>
     
     
     // конструктор
-    public LinkedList(){} // постусловие: создан новый пустой связный список
+    public OriginalLinkedList(){} // постусловие: создан новый пустой связный список
     
     // команды:
     // предусловие: связный список не пустой;
@@ -95,3 +95,4 @@ public abstract class LinkedList<T>
 // Операция поиска всех узлов с заданным значением не нужна, потому что у нас есть
 // метод Find(), который можно вызывать в цикле до тех пор, пока GetFindStatus() не
 // вернет статус ошибки, что означает отсутствие дальнейших совпадений.
+
