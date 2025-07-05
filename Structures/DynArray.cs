@@ -8,7 +8,7 @@ public abstract class AbstractDynArray<T>
     public AbstractDynArray()
     { 
     }
-    
+    // Команды
     // постусловие: создан пустой динамический массив с размером newCapacity
     // с минимальным размером в 16 элементов.
     protected abstract void MakeArray(int newCapacity);
