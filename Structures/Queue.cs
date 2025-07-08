@@ -1,10 +1,10 @@
 ﻿namespace Structures;
 
-public abstract class AbstractQueue<T>
+public abstract class OriginalAbstractQueue<T>
 {
     // конструктор
     // постусловие: создана новая пустая очередь
-    public AbstractQueue()
+    public OriginalAbstractQueue()
     {
     }
 
@@ -32,7 +32,7 @@ public abstract class AbstractQueue<T>
     public abstract int GetPeekStatus(); // успешно; очередь была пустой
 }
 
-public class Queue<T>:AbstractQueue<T>
+public class OriginalQueue<T>:OriginalAbstractQueue<T>
 {
     public const int DequeueNil = 0;   // Deque ещё не вызывался
     public const int DequeueOk = 1;   // первый узел удалён
@@ -47,7 +47,7 @@ public class Queue<T>:AbstractQueue<T>
     
     private List<T> _queueSource;
 
-    public Queue()
+    public OriginalQueue()
     {
         _queueSource = new List<T>();
     }
