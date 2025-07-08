@@ -34,10 +34,17 @@ public abstract class AbstractParentQueue<T>
 
 public abstract class AbstractQueue<T> : AbstractParentQueue<T>
 {
+    // Конструктор
+    // постусловие: создана новая пустая очередь
+    public AbstractQueue() { }
 } 
 
 public abstract class AbstractDeque<T> : AbstractParentQueue<T>
 {
+    // Конструктор
+    // постусловие: создан новый пустой дек
+    public AbstractDeque() { }
+    
     // команды
     // постусловие: в начало дека был добавлен элемент
     public abstract void AddFront(T item);
