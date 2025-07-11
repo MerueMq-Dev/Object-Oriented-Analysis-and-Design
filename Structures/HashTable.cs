@@ -1,6 +1,6 @@
 ﻿namespace Structures;
 
-public abstract class AbstractHashTable<T>
+public abstract class OriginalAbstractHashTable<T>
 {
     protected int Capacity;
     protected int Size;
@@ -9,13 +9,13 @@ public abstract class AbstractHashTable<T>
     public const int PutOk = 1;
     public const int PutErr = 2;
     
-    public const int DeleteNil = 0;
-    public const int DeleteOk = 1;
-    public const int DeleteErr = 2;
+    public const int RemoveNil = 0;
+    public const int RemoveOk = 1;
+    public const int RemoveErr = 2;
     
     // Конструктор
     // постусловие создаёт пустую хэш-таблицу размером с capacity 
-    public AbstractHashTable(int capacity)
+    public OriginalAbstractHashTable(int capacity)
     {
         Capacity = capacity;
         Size = 0;
@@ -26,10 +26,9 @@ public abstract class AbstractHashTable<T>
     // постусловие: в хэш таблицу добавлен новый элемент
     public abstract void Put(T value);
     
-    
     // предусловие: в хэш-таблице есть удаляемый элемент
     // постусловие: из хэш-таблицы удалён переданный элемент
-    public abstract void Delete(T value);
+    public abstract void Remove(T value);
     
     // постусловие: хэш таблица полностью очищена
     public abstract void Clear();
@@ -39,17 +38,17 @@ public abstract class AbstractHashTable<T>
     
     public abstract int GetCapacity();
 
-    public abstract int GetSize();
+    public abstract int Count();
     
     // дополнительные запросы:
     public abstract int GetPutStatus(); // успешно; элемент уже существует; хэш-таблица заполнены
-    public abstract int GetDeleteStatus(); // // успешно; удаляемого элемента не было 
+    public abstract int GetRemoveStatus(); // // успешно; удаляемого элемента не было 
 }
 
-public class HashTable<T> : AbstractHashTable<T>
+public class HashTable<T> : OriginalAbstractHashTable<T>
 {
     private int _putStatus = PutNil;
-    private int _deleteStatus = DeleteNil;
+    private int _removeStatus = RemoveNil;
     
     private List<T>[] buckets;
 
@@ -85,11 +84,11 @@ public class HashTable<T> : AbstractHashTable<T>
         Size += 1;
     }
 
-    public override void Delete(T value)
+    public override void Remove(T value)
     { 
         if (!Contains(value))
         {
-            _deleteStatus = DeleteErr;
+            _removeStatus = RemoveErr;
             return;
         }
 
@@ -97,7 +96,7 @@ public class HashTable<T> : AbstractHashTable<T>
         List<T> bucket = buckets[bucketIndex];
         bucket.Remove(value);
         Size -= 1;
-        _deleteStatus = DeleteOk;
+        _removeStatus = RemoveOk;
     }
 
     public override void Clear()
@@ -119,9 +118,9 @@ public class HashTable<T> : AbstractHashTable<T>
 
     public override int GetCapacity() => Capacity;
 
-    public override int GetSize() => Size;
+    public override int Count() => Size;
 
     public override int GetPutStatus() => _putStatus;
+    public override int GetRemoveStatus() => _removeStatus;
 
-    public override int GetDeleteStatus() => _deleteStatus;
 }
